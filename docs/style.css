@@ -136,3 +136,7 @@ footer a:hover {
 .input-numero::placeholder {
     color: #888888;
 } 
+
+.resultado {
+    color: #f3212c;
+}
