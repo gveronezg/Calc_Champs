@@ -9,9 +9,30 @@
     <body onload="brython()">
         <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
 
+        <button id="btn0">Reiniciar</button>
         <div class="container">
-            <h2>Investir</h2>
-            <button id="btn0">Reiniciar</button>
+            <h2>Créditar ou Debitar</h2>
+            <div class="input-container">
+                <div class="product-container">
+                    <div class="input-group">
+                        <label for="qtdPARC">Se for dividir o pagamento em parcelas</label>
+                        <input type="text" maxlength="6" id="qtdPARC" class="input-numero" placeholder="Pretende dividir em quantas vezes?">
+                    </div>
+                    <div class="input-group">
+                        <label for="vlrPARC">Nessa quantidade de parcelas</label>
+                        <input type="text" maxlength="8" id="vlrPARC" class="input-numero" placeholder="Qual seria o valor de cada parcela?">
+                    </div>
+                    <div class="input-group">
+                        <label for="vlrAVISTA">Se decidir pagar á vista</label>
+                        <input type="text" maxlength="8" id="vlrAVISTA" class="input-numero" placeholder="Qual o valor mínimo no pix?">
+                    </div>
+                    <div class="input-group">
+                        <label for="percREND">Caso mantenha este valor investido</label>
+                        <input type="text" maxlength="6" id="percREND" class="input-numero" placeholder="Qual seu percentual de ganho liquido mensal?">
+                    </div>
+                </div>
+            </div>
+            <button id="btn4">Calcular</button>
         </div>
 
         <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
