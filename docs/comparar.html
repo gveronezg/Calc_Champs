@@ -6,24 +6,34 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.11.3/brython.min.js"></script>
         <link rel="stylesheet" href="style.css">
     </head>
-
     <body onload="brython()">
+        <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
+
+        <button id="btn0">Reiniciar</button>
         <div class="container">
             <h2>Comparar Produtos</h2>
             <div class="input-container">
-                <input type="float" id="input1" placeholder="Qual o valor do 1º produto?">
-                <input type="float" id="input2" placeholder="Qual o valor do 2º produto?">
-                <input type="float" id="input3" placeholder="Quantas unidades tem o 1º produto?">
-                <input type="float" id="input4" placeholder="Quantas unidades tem o 2º produto?">
-                <input type="float" id="input5" placeholder="Qual o peso do 1º produto?">
-                <input type="float" id="input6" placeholder="Qual o peso do 2º produto?">
+                <div class="product-container">
+                    <h3>1º Produto</h3>
+                    <input type="text" maxlength="6" id="preçoP1" placeholder="Preço?">
+                    <input type="text" maxlength="6" id="unidP1" placeholder="Unidades?">
+                    <input type="text" maxlength="6" id="pesoP1" placeholder="Peso?">
+                </div>
+                <br>
+                <div class="product-container">
+                    <h3>2º Produto</h3>
+                    <input type="text" maxlength="6" id="preçoP2" placeholder="Preço?">
+                    <input type="text" maxlength="6" id="unidP2" placeholder="Unidades?">
+                    <input type="text" maxlength="6" id="pesoP2" placeholder="Peso?">
+                </div>
             </div>
             <br>
-            <button id="btn0">Reiniciar</button>
+            <button id="btn3">Comparar</button>
         </div>
+
+        <!-- --------------------------------------------------------------------------------------------------------------------------------- -->
         <script type="text/python" src="script.py"></script>
     </body>
-    
     <footer>
         <p><em>Desenvolvido por <a href="https://github.com/gveronezg" target="_blank">gveronezg</a></em></p>
     </footer>
