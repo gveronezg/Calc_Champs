@@ -1,4 +1,4 @@
-from browser import document, window
+from browser import document, window # type: ignore
 
 def handle_click(event):
     btn_id = event.target.id
