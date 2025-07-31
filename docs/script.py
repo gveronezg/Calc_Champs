@@ -12,6 +12,10 @@ def handle_click(event):
         comparar_produtos(event)
     elif btn_id == "btn4" and "investir.html" in window.location.href:
         creditar_debitar(event)
+    elif btn_id == "btn5":
+        window.location.assign("reabastecer.html")
+    elif btn_id == "btn6" and "reabastecer.html" in window.location.href:
+        quando_reabastecer(event)
 
 def formatar_numero(event):
     input_element = event.target
@@ -26,7 +30,7 @@ def formatar_numero(event):
     except:
         input_element.value = ''
 
-if "comparar.html" or "investir.html" in window.location.href: # Adiciona os event listeners para os inputs
+if "comparar.html" or "investir.html" or "reabastecer.html" in window.location.href: # Adiciona os event listeners para os inputs
     inputs = document.select("input[type='text']")
     for input_element in inputs:
         input_element.bind("input", formatar_numero)
@@ -42,6 +46,7 @@ def comparar_produtos(event):
     valorP2 = (unidP2 * pesoP2) / preçoP2
 
     if valorP1 > valorP2:
+        # resultado = f"{preçoP1:.2f}"
         window.location.assign(f"resultado.html?resultado={preçoP1:.2f}&tipo=1")
     elif valorP1 < valorP2:
         window.location.assign(f"resultado.html?resultado={preçoP2:.2f}&tipo=1")
@@ -68,6 +73,16 @@ def creditar_debitar(event):
         window.location.assign(f"resultado.html?resultado={resultado}&tipo=4")
     else:
         window.location.assign(f"resultado.html?resultado={None}&tipo=5")
+
+def quando_reabastecer(event):
+    vlrLITRO = float(document.getElementById("vlrLITRO").value)
+    vlrGASTO = float(document.getElementById("vlrGASTO").value)
+    kmATUAL = float(document.getElementById("kmATUAL").value)
+    litros = vlrGASTO / vlrLITRO
+    abastecerEM = kmATUAL + litros * 10
+
+    resultado = f"{abastecerEM:.2f}"
+    window.location.assign(f"resultado.html?resultado={resultado}&tipo=6")
 
 def formatar_resultado(resultado,tipo):
     if tipo == "1":
@@ -101,9 +116,13 @@ def formatar_resultado(resultado,tipo):
         '''
     elif tipo == "5":
         return "Tanto faz pagar à vista ou parcelado."
+    elif tipo == "6":
+        return f'''Abasteça novamente <br>
+            antes de chegar em <br>
+            {resultado} KM!
+        '''
 
-# Verifica se estamos na página de resultado e mostra o resultado
-if 'resultado.html' in window.location.href:
+if 'resultado.html' in window.location.href: # Verifica se estamos na página de resultado e mostra o resultado
     url = window.location.href
     params = url.split('?')[1].split('&')
     resultado = params[0].split('=')[1]
