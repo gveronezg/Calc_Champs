@@ -45,8 +45,15 @@ body {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 header {
@@ -61,6 +68,7 @@ h1 {
     margin-bottom: 5px;
     background: linear-gradient(to right, var(--primary), var(--secondary));
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
 }
@@ -120,8 +128,15 @@ h1 {
 }
 
 @keyframes slideIn {
-    from { opacity: 0; transform: translateX(10px); }
-    to { opacity: 1; transform: translateX(0); }
+    from {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 
 .panel-grid {
@@ -207,8 +222,13 @@ label {
 }
 
 @keyframes pulse {
-    from { box-shadow: 0 0 10px rgba(0, 242, 255, 0.05); }
-    to { box-shadow: 0 0 20px rgba(0, 242, 255, 0.15); }
+    from {
+        box-shadow: 0 0 10px rgba(0, 242, 255, 0.05);
+    }
+
+    to {
+        box-shadow: 0 0 20px rgba(0, 242, 255, 0.15);
+    }
 }
 
 .result-title {
@@ -266,15 +286,15 @@ footer a:hover {
     .glass-container {
         padding: 15px;
     }
-    
+
     h1 {
         font-size: 1.8rem;
     }
-    
+
     .nav-tabs {
         flex-direction: column;
     }
-    
+
     .panel-grid {
         grid-template-columns: 1fr;
     }

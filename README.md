@@ -1,6 +1,6 @@
 # 🧮 Calc Champs — Precisão & Decisão
 
-**Calc Champs** não é apenas uma calculadora. É uma ferramenta de precisão cirúrgica projetada para auxiliar em tomadas de decisão inteligentes no dia a dia, desde as compras no mercado até o planejamento financeiro pessoal.
+**Calc Champs** não é apenas uma calculadora. É uma ferramenta projetada para auxiliar em tomadas de decisão inteligentes no dia a dia, desde as compras no mercado até o planejamento financeiro pessoal.
 
 Inspirado por interfaces modernas e de alta performance, o projeto foi totalmente reescrito para oferecer uma experiência de usuário (UX) premium, fluida e instantânea.
 
@@ -50,4 +50,4 @@ Confira o projeto online: [Calc Champs Live](https://gveronezg.github.io/Calc_Ch
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
-Desenvolvido com ❤️ por [Gabriel V.G.](https://github.com/gveronezg)
+Desenvolvido com ❤️ por [gveronezg](https://github.com/gveronezg)
