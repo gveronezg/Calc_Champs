@@ -1,132 +1,186 @@
+/**
+ * Calc Champs - Lógica de Funcionamento
+ * 
+ * Este arquivo controla a interatividade da página, incluindo a troca de abas
+ * e os cálculos matemáticos para as ferramentas de comparação, investimento e combustível.
+ */
+
 document.addEventListener('DOMContentLoaded', () => {
-    // --- Tab Selection Logic ---
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const toolContents = document.querySelectorAll('.tool-content');
 
-    tabButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const targetTab = btn.getAttribute('data-tab');
+    // ==========================================
+    // 1. LÓGICA DE SELEÇÃO DE ABAS
+    // ==========================================
 
-            // Update buttons
-            tabButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+    // Selecionamos todos os botões de aba e as seções de conteúdo
+    const botoesAbas = document.querySelectorAll('.botao-aba');
+    const conteudosFerramentas = document.querySelectorAll('.conteudo-ferramenta');
 
-            // Update content sections
-            toolContents.forEach(content => {
-                content.classList.remove('active');
-                if (content.id === targetTab) {
-                    content.classList.add('active');
+    // Para cada botão de aba, adicionamos um "ouvinte" de clique
+    botoesAbas.forEach(botao => {
+        botao.addEventListener('click', () => {
+            // Pegamos o identificador da aba que o usuário clicou (armazenado em 'data-aba')
+            const abaAlvo = botao.getAttribute('data-aba');
+
+            // 1.1 Atualizar os Botões: Removemos a classe 'ativo' de todos e colocamos apenas no clicado
+            botoesAbas.forEach(b => b.classList.remove('ativo'));
+            botao.classList.add('ativo');
+
+            // 1.2 Atualizar o Conteúdo: Escondemos todos e mostramos apenas o que tem o ID igual à aba alvo
+            conteudosFerramentas.forEach(conteudo => {
+                conteudo.classList.remove('ativo');
+                if (conteudo.id === abaAlvo) {
+                    conteudo.classList.add('ativo');
                 }
             });
         });
     });
 
-    // --- Core Calculation Logic ---
+    // ==========================================
+    // 2. LÓGICA DE CÁLCULO CENTRAL
+    // ==========================================
 
-    // 1. Product Comparison
-    const compareInputs = ['priceA', 'unitsA', 'weightA', 'priceB', 'unitsB', 'weightB'];
-    compareInputs.forEach(id => {
-        document.getElementById(id).addEventListener('input', calculateComparison);
+    /**
+     * FERRAMENTA: 1. COMPARAÇÃO DE PRODUTOS
+     * Objetivo: Descobrir qual produto rende mais por cada real investido.
+     */
+
+    // Lista de IDs dos campos de entrada desta ferramenta
+    const entradasComparacao = ['precoA', 'unidadesA', 'pesoA', 'precoB', 'unidadesB', 'pesoB'];
+
+    // Adicionamos um ouvinte para disparar o cálculo toda vez que o usuário digitar algo
+    entradasComparacao.forEach(id => {
+        document.getElementById(id).addEventListener('input', calcularComparacao);
     });
 
-    function calculateComparison() {
-        const pA = parseFloat(document.getElementById('priceA').value);
-        const uA = parseFloat(document.getElementById('unitsA').value) || 1;
-        const wA = parseFloat(document.getElementById('weightA').value);
+    function calcularComparacao() {
+        // Capturamos os valores dos campos do Produto A
+        const precoA = parseFloat(document.getElementById('precoA').value);
+        const unidadesA = parseFloat(document.getElementById('unidadesA').value) || 1;
+        const pesoA = parseFloat(document.getElementById('pesoA').value);
 
-        const pB = parseFloat(document.getElementById('priceB').value);
-        const uB = parseFloat(document.getElementById('unitsB').value) || 1;
-        const wB = parseFloat(document.getElementById('weightB').value);
+        // Capturamos os valores dos campos do Produto B
+        const precoB = parseFloat(document.getElementById('precoB').value);
+        const unidadesB = parseFloat(document.getElementById('unidadesB').value) || 1;
+        const pesoB = parseFloat(document.getElementById('pesoB').value);
 
-        const resultDiv = document.getElementById('compare-result');
-        const textSpan = document.getElementById('compare-text');
-        const detailSpan = document.getElementById('compare-detail');
+        // Referenciamos os elementos onde exibiremos o resultado
+        const divResultado = document.getElementById('resultado-comparacao');
+        const spanTexto = document.getElementById('texto-comparacao');
+        const spanDetalhe = document.getElementById('detalhe-comparacao');
 
-        if (pA && wA && pB && wB) {
-            const yieldA = (uA * wA) / pA; // Amount per R$1
-            const yieldB = (uB * wB) / pB;
+        // Só fazemos o cálculo se os campos essenciais estiverem preenchidos
+        if (precoA && pesoA && precoB && pesoB) {
+            // Regra de Três: (Quantidade Total) / Preço = Gramas ou ML por cada R$ 1,00
+            const rendimentoA = (unidadesA * pesoA) / precoA;
+            const rendimentoB = (unidadesB * pesoB) / precoB;
 
-            resultDiv.style.display = 'block';
+            // Mostramos o banner de resultado
+            divResultado.style.display = 'block';
 
-            if (yieldA > yieldB) {
-                const diff = ((yieldA / yieldB - 1) * 100).toFixed(1);
-                textSpan.innerHTML = '<span class="highlight-green">Produto A</span> é melhor';
-                detailSpan.innerHTML = `O Produto A rende <strong>${diff}%</strong> a mais por cada Real investido.`;
-            } else if (yieldB > yieldA) {
-                const diff = ((yieldB / yieldA - 1) * 100).toFixed(1);
-                textSpan.innerHTML = '<span class="highlight-green">Produto B</span> é melhor';
-                detailSpan.innerHTML = `O Produto B rende <strong>${diff}%</strong> a mais por cada Real investido.`;
+            if (rendimentoA > rendimentoB) {
+                // Produto A é melhor
+                const diferenca = ((rendimentoA / rendimentoB - 1) * 100).toFixed(1);
+                spanTexto.innerHTML = 'Opção: <span class="destaque-verde">Produto A</span>';
+                spanDetalhe.innerHTML = `O Produto A rende <strong>${diferenca}%</strong> a mais por cada Real investido.`;
+            } else if (rendimentoB > rendimentoA) {
+                // Produto B é melhor
+                const diferenca = ((rendimentoB / rendimentoA - 1) * 100).toFixed(1);
+                spanTexto.innerHTML = 'Opção: <span class="destaque-verde">Produto B</span>';
+                spanDetalhe.innerHTML = `O O Produto B rende <strong>${diferenca}%</strong> a mais por cada Real investido.`;
             } else {
-                textSpan.innerText = 'Custo idêntico';
-                detailSpan.innerText = 'Ambos os produtos têm a mesma relação custo-benefício.';
+                // Empate técnico
+                spanTexto.innerText = 'Custo idêntico';
+                spanDetalhe.innerText = 'Ambos os produtos têm a mesma relação custo-benefício.';
             }
         } else {
-            resultDiv.style.display = 'none';
+            // Se faltar dados, escondemos o resultado
+            divResultado.style.display = 'none';
         }
     }
 
-    // 2. Investment Analysis
-    const investInputs = ['installments', 'instValue', 'cashValue', 'yieldPerc'];
-    investInputs.forEach(id => {
-        document.getElementById(id).addEventListener('input', calculateInvestment);
+    /**
+     * FERRAMENTA: 2. ANÁLISE DE INVESTIMENTO
+     * Objetivo: Comparar se vale a pena pagar à vista com desconto ou parcelar e investir o dinheiro.
+     */
+
+    const entradasInvestimento = ['parcelas', 'valorParcela', 'valorAVista', 'rendimentoPerc'];
+
+    entradasInvestimento.forEach(id => {
+        document.getElementById(id).addEventListener('input', calcularInvestimento);
     });
 
-    function calculateInvestment() {
-        const qParc = parseInt(document.getElementById('installments').value);
-        const vParc = parseFloat(document.getElementById('instValue').value);
-        const vCash = parseFloat(document.getElementById('cashValue').value);
-        const pYield = parseFloat(document.getElementById('yieldPerc').value) || 0;
+    function calcularInvestimento() {
+        // Coleta os valores numéricos dos inputs
+        const qtdParcelas = parseInt(document.getElementById('parcelas').value);
+        const valorParcela = parseFloat(document.getElementById('valorParcela').value);
+        const valorAVista = parseFloat(document.getElementById('valorAVista').value);
+        const percRendimento = parseFloat(document.getElementById('rendimentoPerc').value) || 0;
 
-        const resultDiv = document.getElementById('invest-result');
-        const textSpan = document.getElementById('invest-text');
-        const detailSpan = document.getElementById('invest-detail');
+        const divResultado = document.getElementById('resultado-investimento');
+        const spanTexto = document.getElementById('texto-investimento');
+        const spanDetalhe = document.getElementById('detalhe-investimento');
 
-        if (qParc && vParc && vCash) {
-            const totalPaid = qParc * vParc;
-            // Compound interest: M = P * (1 + i)^n
-            const futureValue = vCash * Math.pow((1 + (pYield / 100)), qParc);
+        if (qtdParcelas && valorParcela && valorAVista) {
+            // Cálculo do custo total se for parcelado
+            const totalPagoAoFinal = qtdParcelas * valorParcela;
 
-            resultDiv.style.display = 'block';
+            // Cálculo de Juros Compostos: M = P * (1 + i)^n
+            // M = Montante Final, P = Principal (Valor que seria pago à vista), i = taxa, n = tempo
+            const valorFuturoDoInvestimento = valorAVista * Math.pow((1 + (percRendimento / 100)), qtdParcelas);
 
-            if (futureValue > totalPaid) {
-                const profit = (futureValue - totalPaid).toFixed(2);
-                textSpan.innerHTML = 'Opção: <span class="highlight-green">PARCELAR</span>';
-                detailSpan.innerHTML = `Se você investir o dinheiro à vista, terá <strong>R$ ${futureValue.toFixed(2)}</strong> ao final das parcelas.<br>Isso é <strong>R$ ${profit}</strong> a mais do que o custo do produto!`;
+            divResultado.style.display = 'block';
+
+            // Se o dinheiro investido crescer mais do que o custo total das parcelas, parcerlar é melhor
+            if (valorFuturoDoInvestimento > totalPagoAoFinal) {
+                const lucro = (valorFuturoDoInvestimento - totalPagoAoFinal).toFixed(2);
+                spanTexto.innerHTML = 'Melhor: <span class="destaque-verde">PARCELAR</span>';
+                spanDetalhe.innerHTML = `Se você investir o valor à vista, terá <strong>R$ ${valorFuturoDoInvestimento.toFixed(2)}</strong> ao final do tempo.<br>Isso supera o parcelamento em <strong>R$ ${lucro}</strong>.`;
             } else {
-                const loss = (totalPaid - futureValue).toFixed(2);
-                textSpan.innerHTML = 'Opção: <span class="highlight-pink">À VISTA</span>';
-                detailSpan.innerHTML = `O rendimento do investimento não cobre o custo do parcelamento.<br>Pagar à vista economiza <strong>R$ ${loss}</strong> em relação ao total parcelado final.`;
+                // Caso contrário, o desconto à vista compensa mais
+                const prejuizo = (totalPagoAoFinal - valorFuturoDoInvestimento).toFixed(2);
+                spanTexto.innerHTML = 'Melhor: <span class="destaque-rosa">À VISTA</span>';
+                spanDetalhe.innerHTML = `O rendimento do investimento não supera o preço total parcelado.<br>Pagar à vista economiza <strong>R$ ${prejuizo}</strong> reais no comparativo final.`;
             }
         } else {
-            resultDiv.style.display = 'none';
+            divResultado.style.display = 'none';
         }
     }
 
-    // 3. Fuel Autonomy
-    const fuelInputs = ['fuelPrice', 'fuelSpent', 'currentKm'];
-    fuelInputs.forEach(id => {
-        document.getElementById(id).addEventListener('input', calculateFuel);
+    /**
+     * FERRAMENTA: 3. AUTONOMIA DE COMBUSTÍVEL
+     * Objetivo: Calcular quantos KM você vai rodar com o valor abastecido.
+     */
+
+    const entradasCombustivel = ['precoCombustivel', 'valorAbastecido', 'kmAtual'];
+
+    entradasCombustivel.forEach(id => {
+        document.getElementById(id).addEventListener('input', calcularCombustivel);
     });
 
-    function calculateFuel() {
-        const price = parseFloat(document.getElementById('fuelPrice').value);
-        const spent = parseFloat(document.getElementById('fuelSpent').value);
-        const currentKm = parseFloat(document.getElementById('currentKm').value);
+    function calcularCombustivel() {
+        const precoLitro = parseFloat(document.getElementById('precoCombustivel').value);
+        const valorGasto = parseFloat(document.getElementById('valorAbastecido').value);
+        const kmAtualDoVeiculo = parseFloat(document.getElementById('kmAtual').value);
 
-        const resultDiv = document.getElementById('fuel-result');
-        const textSpan = document.getElementById('fuel-text');
-        const detailSpan = document.getElementById('fuel-detail');
+        const divResultado = document.getElementById('resultado-combustivel');
+        const spanTexto = document.getElementById('texto-combustivel');
+        const spanDetalhe = document.getElementById('detalhe-combustivel');
 
-        if (price && spent && currentKm) {
-            const liters = spent / price;
-            const distance = liters * 10; // Assuming 10km/L
-            const refillAt = currentKm + distance;
+        if (precoLitro && valorGasto && kmAtualDoVeiculo) {
+            // 1. Calculamos quantos litros foram colocados no tanque
+            const litrosTotal = valorGasto / precoLitro;
 
-            resultDiv.style.display = 'block';
-            textSpan.innerHTML = `<span class="highlight">${refillAt.toFixed(0)} KM</span>`;
-            detailSpan.innerHTML = `Com R$ ${spent.toFixed(2)}, você abasteceu <strong>${liters.toFixed(2)} litros</strong>.<br>Deve rodar aproximadamente <strong>${distance.toFixed(0)} KM</strong>.`;
+            // 2. Estimamos a distância (Média padrão de 10km por litro)
+            const distanciaEstimada = litrosTotal * 10;
+
+            // 3. Calculamos em qual KM o motorista precisará abastecer novamente
+            const proximoAbastecimentoEmEm = kmAtualDoVeiculo + distanciaEstimada;
+
+            divResultado.style.display = 'block';
+            spanTexto.innerHTML = `<span class="destaque">${proximoAbastecimentoEmEm.toFixed(0)} KM</span>`;
+            spanDetalhe.innerHTML = `Com R$ ${valorGasto.toFixed(2)}, você colocou <strong>${litrosTotal.toFixed(2)} litros</strong>.<br>Deve rodar aproximadamente <strong>${distanciaEstimada.toFixed(0)} KM</strong>.`;
         } else {
-            resultDiv.style.display = 'none';
+            divResultado.style.display = 'none';
         }
     }
 });

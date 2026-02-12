@@ -4,161 +4,170 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calc Champs</title>
+    <title>Calc Champs - Ferramentas de Decisão</title>
+    <!-- Vinculação do arquivo de estilos traduzido -->
     <link rel="stylesheet" href="style.css?v=2.0">
 </head>
 
 <body>
 
-    <div class="glass-container">
+    <div class="container-vidro">
         <header>
             <h1>CALC CHAMPS</h1>
-            <div class="subtitle">Ferramentas de Decisão Inteligente</div>
+            <div class="subtitulo">Ferramentas de Decisão Inteligente</div>
         </header>
 
-        <nav class="nav-tabs">
-            <button class="tab-btn active" data-tab="compare">🛒 Comparar</button>
-            <button class="tab-btn" data-tab="invest">💰 Investimento</button>
-            <button class="tab-btn" data-tab="fuel">⛽ Combustível</button>
+        <!-- Navegação Principal por Abas -->
+        <nav class="abas-navegacao">
+            <button class="botao-aba ativo" data-aba="comparar">🛒 Comparar</button>
+            <button class="botao-aba" data-aba="investir">💰 Investimento</button>
+            <button class="botao-aba" data-aba="combustivel">⛽ Combustível</button>
         </nav>
 
-        <!-- TOOL: COMPARE PRODUCTS -->
-        <main id="compare" class="tool-content active">
-            <div class="panel-grid">
-                <div class="panel">
+        <!-- FERRAMENTA: COMPARAR PRODUTOS -->
+        <main id="comparar" class="conteudo-ferramenta ativo">
+            <div class="grade-paineis">
+                <!-- Painel do Produto A -->
+                <div class="painel">
                     <h3>📦 Produto A</h3>
-                    <div class="input-group">
+                    <div class="grupo-entrada">
                         <label>Preço</label>
-                        <div class="input-wrapper with-prefix">
-                            <span class="prefix">R$</span>
-                            <input type="number" id="priceA" placeholder="0.00" step="0.01">
+                        <div class="envoltório-entrada com-prefixo">
+                            <span class="prefixo">R$</span>
+                            <input type="number" id="precoA" placeholder="0.00" step="0.01">
                         </div>
                     </div>
-                    <div class="input-group">
+                    <div class="grupo-entrada">
                         <label>Quantidade (Unid/Pacotes)</label>
-                        <div class="input-wrapper">
-                            <input type="number" id="unitsA" placeholder="1" value="1">
+                        <div class="envoltório-entrada">
+                            <input type="number" id="unidadesA" placeholder="1" value="1">
                         </div>
                     </div>
-                    <div class="input-group">
+                    <div class="grupo-entrada">
                         <label>Peso/Volume por Unidade</label>
-                        <div class="input-wrapper">
-                            <input type="number" id="weightA" placeholder="Gramas/ML">
+                        <div class="envoltório-entrada">
+                            <input type="number" id="pesoA" placeholder="Gramas/ML">
                         </div>
                     </div>
                 </div>
 
-                <div class="panel">
+                <!-- Painel do Produto B -->
+                <div class="painel">
                     <h3>📦 Produto B</h3>
-                    <div class="input-group">
+                    <div class="grupo-entrada">
                         <label>Preço</label>
-                        <div class="input-wrapper with-prefix">
-                            <span class="prefix">R$</span>
-                            <input type="number" id="priceB" placeholder="0.00" step="0.01">
+                        <div class="envoltório-entrada com-prefixo">
+                            <span class="prefixo">R$</span>
+                            <input type="number" id="precoB" placeholder="0.00" step="0.01">
                         </div>
                     </div>
-                    <div class="input-group">
+                    <div class="grupo-entrada">
                         <label>Quantidade (Unid/Pacotes)</label>
-                        <div class="input-wrapper">
-                            <input type="number" id="unitsB" placeholder="1" value="1">
+                        <div class="envoltório-entrada">
+                            <input type="number" id="unidadesB" placeholder="1" value="1">
                         </div>
                     </div>
-                    <div class="input-group">
+                    <div class="grupo-entrada">
                         <label>Peso/Volume por Unidade</label>
-                        <div class="input-wrapper">
-                            <input type="number" id="weightB" placeholder="Gramas/ML">
+                        <div class="envoltório-entrada">
+                            <input type="number" id="pesoB" placeholder="Gramas/ML">
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="compare-result" class="result-banner" style="display: none;">
-                <div class="result-title">Melhor Escolha</div>
-                <div class="result-value" id="compare-text">---</div>
-                <div class="result-detail" id="compare-detail">Preencha os dados acima</div>
+            <!-- Banner de Resultados da Comparação -->
+            <div id="resultado-comparacao" class="banner-resultado" style="display: none;">
+                <div class="titulo-resultado">Melhor Escolha</div>
+                <div class="valor-resultado" id="texto-comparacao">---</div>
+                <div class="detalhe-resultado" id="detalhe-comparacao">Preencha os dados acima</div>
             </div>
         </main>
 
-        <!-- TOOL: INVEST vs DEBT -->
-        <main id="invest" class="tool-content">
-            <div class="panel-grid">
-                <div class="panel">
+        <!-- FERRAMENTA: INVESTIR vs PARCELAR -->
+        <main id="investir" class="conteudo-ferramenta">
+            <div class="grade-paineis">
+                <!-- Opção de Parcelamento -->
+                <div class="painel">
                     <h3>💳 Opção Parcelada</h3>
-                    <div class="input-group">
+                    <div class="grupo-entrada">
                         <label>Quantidade de Parcelas</label>
-                        <div class="input-wrapper">
-                            <input type="number" id="installments" placeholder="12">
+                        <div class="envoltório-entrada">
+                            <input type="number" id="parcelas" placeholder="12">
                         </div>
                     </div>
-                    <div class="input-group">
+                    <div class="grupo-entrada">
                         <label>Valor da Parcela</label>
-                        <div class="input-wrapper with-prefix">
-                            <span class="prefix">R$</span>
-                            <input type="number" id="instValue" placeholder="0.00" step="0.01">
+                        <div class="envoltório-entrada com-prefixo">
+                            <span class="prefixo">R$</span>
+                            <input type="number" id="valorParcela" placeholder="0.00" step="0.01">
                         </div>
                     </div>
                 </div>
 
-                <div class="panel">
+                <!-- Opção À Vista -->
+                <div class="painel">
                     <h3>💵 Opção À Vista</h3>
-                    <div class="input-group">
+                    <div class="grupo-entrada">
                         <label>Valor Total à Vista</label>
-                        <div class="input-wrapper with-prefix">
-                            <span class="prefix">R$</span>
-                            <input type="number" id="cashValue" placeholder="0.00" step="0.01">
+                        <div class="envoltório-entrada com-prefixo">
+                            <span class="prefixo">R$</span>
+                            <input type="number" id="valorAVista" placeholder="0.00" step="0.01">
                         </div>
                     </div>
-                    <div class="input-group">
+                    <div class="grupo-entrada">
                         <label>Rendimento Mensal Esperado</label>
-                        <div class="input-wrapper">
-                            <input type="number" id="yieldPerc" placeholder="1.0" step="0.1">
-                            <span style="margin-left: 10px; color: var(--text-dim);">%</span>
+                        <div class="envoltório-entrada">
+                            <input type="number" id="rendimentoPerc" placeholder="1.0" step="0.1">
+                            <span style="margin-left: 10px; color: var(--texto-apagado);">%</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="invest-result" class="result-banner" style="display: none;">
-                <div class="result-title">Análise Financeira</div>
-                <div class="result-value" id="invest-text">---</div>
-                <div class="result-detail" id="invest-detail">Preencha os dados para comparar</div>
+            <!-- Banner de Resultados do Investimento -->
+            <div id="resultado-investimento" class="banner-resultado" style="display: none;">
+                <div class="titulo-resultado">Análise Financeira</div>
+                <div class="valor-resultado" id="texto-investimento">---</div>
+                <div class="detalhe-resultado" id="detalhe-investimento">Preencha os dados para comparar</div>
             </div>
         </main>
 
-        <!-- TOOL: FUEL REFILL -->
-        <main id="fuel" class="tool-content">
-            <div class="panel-grid">
-                <div class="panel" style="grid-column: 1 / -1;">
+        <!-- FERRAMENTA: ABASTECIMENTO -->
+        <main id="combustivel" class="conteudo-ferramenta">
+            <div class="grade-paineis">
+                <div class="painel" style="grid-column: 1 / -1;">
                     <h3>⛽ Cálculo de Autonomia</h3>
-                    <div class="panel-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
-                        <div class="input-group">
+                    <div class="grade-paineis" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+                        <div class="grupo-entrada">
                             <label>Valor do Litro</label>
-                            <div class="input-wrapper with-prefix">
-                                <span class="prefix">R$</span>
-                                <input type="number" id="fuelPrice" placeholder="5.89" step="0.01">
+                            <div class="envoltório-entrada com-prefixo">
+                                <span class="prefixo">R$</span>
+                                <input type="number" id="precoCombustivel" placeholder="5.89" step="0.01">
                             </div>
                         </div>
-                        <div class="input-group">
+                        <div class="grupo-entrada">
                             <label>Quanto deseja abastecer?</label>
-                            <div class="input-wrapper with-prefix">
-                                <span class="prefix">R$</span>
-                                <input type="number" id="fuelSpent" placeholder="50.00" step="0.01">
+                            <div class="envoltório-entrada com-prefixo">
+                                <span class="prefixo">R$</span>
+                                <input type="number" id="valorAbastecido" placeholder="50.00" step="0.01">
                             </div>
                         </div>
-                        <div class="input-group">
+                        <div class="grupo-entrada">
                             <label>KM Atual do Veículo</label>
-                            <div class="input-wrapper">
-                                <input type="number" id="currentKm" placeholder="12500">
+                            <div class="envoltório-entrada">
+                                <input type="number" id="kmAtual" placeholder="12500">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div id="fuel-result" class="result-banner" style="display: none;">
-                <div class="result-title">Próxima Parada</div>
-                <div class="result-value" id="fuel-text">---</div>
-                <div class="result-detail" id="fuel-detail">Cálculo baseado em economia média (10km/L)</div>
+            <!-- Banner de Resultados do Combustível -->
+            <div id="resultado-combustivel" class="banner-resultado" style="display: none;">
+                <div class="titulo-resultado">Próxima Parada</div>
+                <div class="valor-resultado" id="texto-combustivel">---</div>
+                <div class="detalhe-resultado" id="detalhe-combustivel">Cálculo baseado em economia média (10km/L)</div>
             </div>
         </main>
 
@@ -169,6 +178,7 @@
                 target="_blank">gveronezg</a></p>
     </footer>
 
+    <!-- Script principal traduzido -->
     <script src="script.js?v=2.0"></script>
 </body>
 
