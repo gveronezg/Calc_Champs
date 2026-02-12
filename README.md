@@ -1,73 +1,53 @@
-# Calc_Champs 🧮
+# 🧮 Calc Champs — Precisão & Decisão
 
-Calculadora personalizada para sanar rapidamente duas dúvidas pertinentes do nosso dia a dia.
+**Calc Champs** não é apenas uma calculadora. É uma ferramenta de precisão cirúrgica projetada para auxiliar em tomadas de decisão inteligentes no dia a dia, desde as compras no mercado até o planejamento financeiro pessoal.
 
-## 🎯 Usabilidade
+Inspirado por interfaces modernas e de alta performance, o projeto foi totalmente reescrito para oferecer uma experiência de usuário (UX) premium, fluida e instantânea.
 
-### 💰 Comparar Produtos:
-Quando você quer saber qual produto vale mais a pena adquirir...
+---
 
-#### Exemplo: Você quer comprar um pacote de papel higiênico e tem 2 opções:
-- Pacote 1: R$ 20,00, com 12 rolos de 30 metros cada
-- Pacote 2: R$ 15,00, com 8 rolos de 30 metros cada
-- Qual opção vale mais a pena comprar?
+## 🚀 Funcionalidades Principais
 
-#### Calculando:
-- R$ 20,00 / 12 rolos = R$ 1,66 por rolo
-- R$ 15,00 / 8 rolos = R$ 1,87 por rolo
-- Portanto, mesmo pagando mais, o Pacote 1 vale mais a pena pois, você terá um total de 360 metros de papel higiênico e o Pacote 2, apenas 240 metros.
+### 🛒 Comparativo Inteligente de Produtos
+Descubra qual produto realmente oferece o melhor custo-benefício. O sistema calcula o rendimento por cada Real investido, considerando preço, unidades e peso/volume. Não se deixe enganar por embalagens maiores!
 
-### 💳 Creditar ou Debitar:
-Quando você quer saber se vale mais a pena pagar parcelado ou à vista conforme a taxa de juros...
+### 💰 Análise de Investimento vs. Dívida (Parcelamento)
+Decida se vale mais a pena pagar à vista com desconto ou parcelar e manter o dinheiro rendendo. A calculadora utiliza modelos de juros compostos para comparar o montante final investido contra o total pago em parcelas.
 
-#### Exemplo: Você tem R$ 1.000,00 investidos a 1% ao mês e tem uma dívida a pagar de:
-- R$ 1.000,00 no PIX OU R$ 1.200,00 dividido em 12x de R$ 100,00
-- E você quer saber se vale a pena pagar à vista e aproveitar o desconto de R$ 200,00, ou manter o dinheiro investido e pagar parceladamente
+### ⛽ Autonomia de Combustível
+Planeje sua próxima parada com precisão. Com base no valor investido e preço do litro, o sistema estima sua autonomia e indica o KM aproximado para o próximo reabastecimento.
 
-#### Calculando:
-- Se eu manter os R$ 1.000,00 investidos a 1% ao mês sob juros compostos, em 12 meses terei um total de R$ 1.126,82
-- Se eu pagar à vista, deixarei de ganhar estes R$ 126,82 mas terei me livrado de um juros de R$ 200,00 no final do pagamento
-- Ou seja, vale mais a pena pagar à vista e aproveitar o desconto
-- Já se o vendedor me oferecer a opção de pagar em 11 parcelas de R$ 100,00, o valor total pago seria de R$ 1.100,00
-- Sobrando ainda R$ 26,82 na minha conta de investimentos
-
-#### OBS:
-- É claro que os cálculos não são 100% precisos, pois não levam em consideração as variações de rendimento conforme movimentação da conta
-- Contudo, o objetivo é te auxiliar na hora de tomar decisões mais assertivas sobre como gastar o seu dinheiro
+---
 
 ## 🛠️ Tecnologias Utilizadas
-- HTML5
-- CSS3
-- Brython (Python no navegador)
-- JavaScript (para manipulação do DOM)
+O projeto utiliza o que há de mais moderno em desenvolvimento web purista:
 
-## 🌐 Onde Acessar?
-Acesse a calculadora em: [Calc_Champs](https://gveronezg.github.io/Calc_Champs/)
+- **HTML5 & CSS3 Premium**: Design baseado em **Glassmorphism**, com efeitos neon, gradientes dinâmicos e total responsividade.
+- **Vanilla JavaScript**: Lógica matemática pura e reativa. Cálculos em tempo real sem a necessidade de recarregamento de página ou dependências pesadas.
+- **Modern Typography**: Utilização das fontes *Orbitron* e *Roboto* para um equilíbrio entre estética futurista e legibilidade total.
 
-## 🚀 Como Usar?
-1. Clone o repositório
-2. Abra o arquivo `index.html` em seu navegador
-3. Pronto! A calculadora está pronta para uso
+---
 
-## 🤝 Contribuindo
+## ⚡ Diferenciais desta Versão
+- **Single Page Application (SPA)**: Alterne entre ferramentas sem trocar de página.
+- **Feedback em Tempo Real**: Os resultados aparecem e atualizam conforme você digita.
+- **Design Glassmorphic**: Interface translúcida e moderna que se adapta a qualquer dispositivo.
 
-Contribuições são bem-vindas! Por favor, siga estes passos:
+---
 
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
+## 🌐 Acesso Rápido
+Confira o projeto online: [Calc Champs Live](https://gveronezg.github.io/Calc_Champs/)
+
+## ⚙️ Como Utilizar
+1.  Acesse a página inicial.
+2.  Escolha a ferramenta desejada no menu superior.
+3.  Insira os dados nos campos indicados.
+4.  O resultado aparecerá automaticamente em um banner iluminado abaixo dos campos.
+
+---
 
 ## 📄 Licença
-
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-## 👤 Autor
-
-- Gabriel V.G. - [@gveronezg](https://github.com/gveronezg)
-
-## 🙏 Agradecimentos
-
-- GitHub Pages por torná-la tão acessível
-- Brython por permitir usar Python no navegador
+---
+Desenvolvido com ❤️ por [Gabriel V.G.](https://github.com/gveronezg)
